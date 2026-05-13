@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Customer Dashboard</title>
+
+<script src="https://cdn.tailwindcss.com"></script>
+
+<style>
+
+body{
+    background:#020b2d;
+    background-image:
+    linear-gradient(rgba(255,255,255,0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.05) 1px, transparent 1px);
+    background-size:50px 50px;
+    font-family:Arial, Helvetica, sans-serif;
+}
+
+.glow{
+    box-shadow:0 0 40px rgba(0,162,255,0.25);
+}
+
+</style>
+
+</head>
+
+<body class="text-white min-h-screen">
+
+
+<nav class="flex items-center justify-between px-8 py-5 border-b border-white/10">
+
+    <div class="flex items-center gap-3">
+
+        <div class="w-12 h-12 rounded-xl bg-gradient-to-r from-cyan-400 to-blue-600 flex items-center justify-center text-2xl">
+            🛡
+        </div>
+
+        <h1 class="text-3xl font-bold">
+            SecureBank
+        </h1>
+
+    </div>
+
+   
+    <div class="flex items-center gap-6">
+
+        <div class="text-right">
+
+            <h2 class="text-xl font-semibold"
+                th:text="${session.user.username}">
+            </h2>
+
+            <p class="text-gray-400">
+                Customer Account
+            </p>
+
+        </div>
+
+        <a href="/logout">
+
+            <button class="bg-red-500 hover:bg-red-600 px-6 py-3 rounded-xl font-semibold transition">
+                Logout
+            </button>
+
+        </a>
+
+    </div>
+
+</nav>
+
+
+<div class="px-8 py-10">
+
+ 
+    <div class="mb-10">
+
+        <h1 class="text-5xl font-bold mb-4">
+            Welcome Back 👋
+        </h1>
+
+        <p class="text-gray-400 text-xl">
+            View your banking and customer details below
+        </p>
+
+    </div>
+
+
+    <div class="grid md:grid-cols-3 gap-6 mb-10">
+
+        
+        <div class="bg-white/5 border border-white/10 rounded-3xl p-6 glow">
+
+            <p class="text-gray-400 mb-2 text-lg">
+                Username
+            </p>
+
+            <h2 class="text-3xl font-bold"
+                th:text="${session.user.username}">
+            </h2>
+
+        </div>
+
+     
+        <div class="bg-white/5 border border-white/10 rounded-3xl p-6 glow">
+
+            <p class="text-gray-400 mb-2 text-lg">
+                Role
+            </p>
+
+            <h2 class="text-3xl font-bold"
+                th:text="${session.role}">
+            </h2>
+
+        </div>
+
+     
+        <div class="bg-white/5 border border-white/10 rounded-3xl p-6 glow">
+
+            <p class="text-gray-400 mb-2 text-lg">
+                Total Accounts
+            </p>
+
+            <h2 class="text-3xl font-bold"
+                th:text="${#lists.size(customers)}">
+            </h2>
+
+        </div>
+
+    </div>
+
+
+
+    <div class="bg-white/5 border border-white/10 rounded-3xl overflow-hidden glow">
+
+        <!-- Header -->
+        <div class="p-8 border-b border-white/10">
+
+            <h2 class="text-4xl font-bold mb-2">
+                🏦 Customer Banking Details
+            </h2>
+
+            <p class="text-gray-400 text-lg">
+                Your linked bank account information
+            </p>
+
+        </div>
+
+
+        <div class="overflow-x-auto">
+
+            <table class="w-full">
+
+                <thead>
+
+                    <tr class="border-b border-white/10 text-left text-gray-300">
+
+                        <th class="p-6 text-lg">👤 Name</th>
+
+                        <th class="p-6 text-lg">Bank</th>
+
+                        <th class="p-6 text-lg">Address</th>
+
+                        <th class="p-6 text-lg">Age</th>
+
+                    </tr>
+
+                </thead>
+
+                <tbody>
+
+                    <tr th:each="customer : ${customers}"
+                        class="border-b border-white/5 hover:bg-white/5 transition duration-300">
+
+                        <td class="p-6 text-xl font-semibold"
+                            th:text="${customer.name}">
+                        </td>
+
+                        <td class="p-6 text-lg"
+                            th:text="${customer.bank.name}">
+                        </td>
+
+                        <td class="p-6 text-lg"
+                            th:text="${customer.address}">
+                        </td>
+
+                        <td class="p-6 text-lg"
+                            th:text="${customer.age}">
+                        </td>
+
+                    </tr>
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </div>
+
+</div>
+
+</body>
+</html>

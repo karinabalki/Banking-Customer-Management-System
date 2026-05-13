@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Admin Dashboard</title>
+
+<script src="https://cdn.tailwindcss.com"></script>
+
+<style>
+
+body{
+    background-color: #020b2d;
+    background-image:
+    linear-gradient(rgba(255,255,255,0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.05) 1px, transparent 1px);
+    background-size: 50px 50px;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.glow{
+    position: absolute;
+    width: 600px;
+    height: 600px;
+    background: radial-gradient(circle, rgba(0,140,255,0.35), transparent 70%);
+    filter: blur(70px);
+    z-index: 0;
+}
+
+.fade-in{
+    animation: fadeIn 1s ease;
+}
+
+@keyframes fadeIn{
+    from{
+        opacity:0;
+        transform: translateY(20px);
+    }
+    to{
+        opacity:1;
+        transform: translateY(0);
+    }
+}
+
+</style>
+
+</head>
+
+<body class="min-h-screen text-white relative overflow-hidden">
+
+
+<div class="glow top-20 left-1/2 -translate-x-1/2"></div>
+
+<nav class="flex items-center justify-between px-10 py-6 relative z-10">
+
+
+    <div class="flex items-center gap-4">
+
+        <div class="w-14 h-14 rounded-2xl bg-gradient-to-r from-cyan-400 to-blue-600 flex items-center justify-center text-2xl shadow-xl">
+            🛡
+        </div>
+
+        <h1 class="text-4xl font-bold">
+            SecureBank
+        </h1>
+
+    </div>
+
+    <a href="/logout">
+
+        <button class="bg-red-500 hover:bg-red-600 px-6 py-3 rounded-xl text-lg font-semibold transition">
+            Logout
+        </button>
+
+    </a>
+
+</nav>
+
+<div class="relative z-10 flex flex-col items-center justify-center mt-2 fade-in">
+
+    <h1 class="text-6xl font-bold text-center leading-tight">
+
+        Admin Dashboard
+
+    </h1>
+
+    <p class="text-gray-400 text-xl mt-6 text-center max-w-2xl">
+        Manage banks, customers, and secure banking operations from one powerful dashboard.
+    </p>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-10 mt-10 w-full max-w-5xl px-8">
+
+        <div class="bg-white/5 backdrop-blur-lg border border-white/10 rounded-3xl p-10 shadow-2xl hover:scale-105 transition duration-300">
+
+            <div class="text-6xl mb-6">
+                🏦
+            </div>
+
+            <h2 class="text-3xl font-bold mb-4">
+                Manage Banks
+            </h2>
+
+            <p class="text-gray-400 text-lg leading-relaxed mb-8">
+                Add, update, delete, and manage all banking records securely.
+            </p>
+
+            <a href="/adminBankView">
+
+                <button class="w-full bg-gradient-to-r from-cyan-400 to-blue-600 py-4 rounded-2xl text-xl font-semibold hover:scale-[1.02] transition">
+                    Open Bank Panel →
+                </button>
+
+            </a>
+
+        </div>
+
+        <div class="bg-white/5 backdrop-blur-lg border border-white/10 rounded-3xl p-10 shadow-2xl hover:scale-105 transition duration-300">
+
+            <div class="text-6xl mb-6">
+                👥
+            </div>
+
+            <h2 class="text-3xl font-bold mb-4">
+                Manage Customers
+            </h2>
+
+            <p class="text-gray-400 text-lg leading-relaxed mb-8">
+                View customer details, assign banks, and manage user records efficiently.
+            </p>
+
+            <a href="/adminCustomerView">
+
+                <button class="w-full bg-gradient-to-r from-emerald-400 to-cyan-500 py-4 rounded-2xl text-xl font-semibold hover:scale-[1.02] transition">
+                    Open Customer Panel →
+                </button>
+
+            </a>
+
+        </div>
+
+    </div>
+
+</div>
+
+</body>
+</html>

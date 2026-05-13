@@ -1,0 +1,108 @@
+<!DOCTYPE html<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>View Banks</title>
+
+<script src="https://cdn.tailwindcss.com"></script>
+
+<style>
+
+body{
+    background:#020b2d;
+    background-image:
+    linear-gradient(rgba(255,255,255,0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.05) 1px, transparent 1px);
+    background-size:50px 50px;
+    font-family:Arial, Helvetica, sans-serif;
+}
+
+</style>
+
+</head>
+
+<body class="text-white min-h-screen">
+
+<nav class="flex items-center justify-between px-8 py-5 border-b border-white/10">
+
+    <div class="flex items-center gap-3">
+        <div class="w-12 h-12 rounded-xl bg-gradient-to-r from-cyan-400 to-blue-600 flex items-center justify-center text-2xl">
+            🛡
+        </div>
+
+        <h1 class="text-3xl font-bold">SecureBank</h1>
+    </div>
+
+    <a href="/Admin_Home_Page" class="text-gray-400 hover:text-white text-xl">
+        Back to Dashboard
+    </a>
+
+</nav>
+
+
+<div class="flex items-center justify-between px-8 mt-12">
+
+    <div>
+        <h1 class="text-5xl font-bold mb-4">
+            🏦 Bank Directory
+        </h1>
+
+        <p class="text-gray-400 text-xl">
+            Your bank info is listed below
+        </p>
+    </div>
+
+    <a href="/addBank">
+        <button class="bg-gradient-to-r from-cyan-400 to-blue-600 px-8 py-4 rounded-2xl text-xl font-semibold hover:scale-105 transition">
+            + Add Bank
+        </button>
+    </a>
+
+</div>
+
+
+<div class="mx-8 mt-10 bg-white/5 border border-white/10 rounded-3xl overflow-hidden">
+
+<table class="w-full">
+
+    <tr class="text-left border-b border-white/10 text-gray-300 text-lg">
+        <th class="p-6">ID</th>
+        <th>NAME</th>
+        <th>IFSC</th>
+        <th>BRANCH</th>
+        <th>UPDATE</th>
+        <th>DELETE</th>
+    </tr>
+
+    <tr th:each="bank:${listBanks}" class="border-b border-white/5 hover:bg-white/5 transition">
+
+        <td class="p-6 text-lg" th:text="${bank.id}"></td>
+
+        <td class="font-semibold text-xl" th:text="${bank.name}"></td>
+
+        <td class="text-lg" th:text="${bank.ifsc}"></td>
+
+        <td class="text-lg" th:text="${bank.branch}"></td>
+
+        <td>
+            <a th:href="@{/updateBank/{id}(id=${bank.id})}"
+               class="text-yellow-400 text-xl font-semibold hover:text-yellow-300">
+               ✏ Update
+            </a>
+        </td>
+
+        <td>
+            <a th:href="@{/deleteBank/{id}(id=${bank.id})}"
+               class="text-red-400 text-xl font-semibold hover:text-red-300">
+               🗑 Delete
+            </a>
+        </td>
+
+    </tr>
+
+</table>
+
+</div>
+
+</body>
+</html>
