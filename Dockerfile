@@ -8,4 +8,4 @@ RUN mvn clean install -DskipTests
 
 EXPOSE 8080
 
-CMD ["java", "-jar", "target/BankingCustomerSystem-0.0.1-SNAPSHOT.jar"]
+CMD ["java", "-jar", "target/BankingCustomerSystem-0.0.1-SNAPSHOT.war"]
